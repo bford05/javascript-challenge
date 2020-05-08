@@ -1,7 +1,6 @@
 // define variable for table body 
 var tbody = d3.select("tbody");
 
-
 // Create loop for ufo sighting details
 data.forEach((ufoDetails) => {
     console.log(ufoDetails);
@@ -15,6 +14,9 @@ data.forEach((ufoDetails) => {
         cell.text(value);
     });
 });
+
+// Define variable for data in js file
+var ufo = data;
 
 // Select button on form for date filtering
 var button = d3.select("#filter-btn");
@@ -30,10 +32,15 @@ form.on("submit", runEnter);
 // Create funcion to run for both clicking the button and pressing enter
 function runEnter() {
     // Prevent the page from refreshing
-    // d3.event.preventDefault();
+    d3.event.preventDefault();
     // Define variable for input date and select id that stores the date
     var inputDate = d3.select("#datetime");
     // Define variable for value property of input date
     var inputValue = inputDate.property("value");
-    d3.select("input").text(inputValue)
-}
+    console.log(inputValue)
+    
+    var filteredData = ufo.filter(info => info.datetime === inputValue);
+    console.log(filteredData);
+
+    d3.select("td").text(inputValue);
+};
