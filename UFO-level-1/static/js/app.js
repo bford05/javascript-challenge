@@ -42,5 +42,6 @@ function runEnter() {
     var filteredData = ufo.filter(info => info.datetime === inputValue);
     console.log(filteredData);
 
-    d3.select("td").text(inputValue);
+    if (inputValue === datetime)
+    d3.select("input").text(inputValue);
 };
